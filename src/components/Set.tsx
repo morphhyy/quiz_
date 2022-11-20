@@ -50,6 +50,7 @@ const Set: React.FC = () => {
                     selected={selected}
                     buttonText={buttonText}
                     submit={submit}
+                    setSubmit={setSubmit}
                     setSelected={setSelected}
                     setFilterQuestion={setFilterQuestion}
                 />

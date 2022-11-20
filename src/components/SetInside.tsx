@@ -19,6 +19,7 @@ interface props {
     submit: string;
     buttonText: string;
     setFilterQuestion: React.Dispatch<React.SetStateAction<IQuestion[]>>;
+    setSubmit: React.Dispatch<React.SetStateAction<string>>;
 }
 const SetInside: React.FC<props> = ({
     goback,
@@ -33,6 +34,7 @@ const SetInside: React.FC<props> = ({
     buttonText,
     setSelected,
     setFilterQuestion,
+    setSubmit,
 }) => {
     const skip = () => {
         setSelectAnswer([...selectAnswer, { id: selected, skip: true }]);
@@ -50,6 +52,8 @@ const SetInside: React.FC<props> = ({
         setSelected(selected + 1);
         const data = Questions.filter((k) => k.id === selected);
         setFilterQuestion(data);
+        const correct = selectAnswer.filter((s) => s.correct === true);
+        setSubmit(`${correct.length}`);
     };
 
     const clickAnswer = (answer: string) => {
