@@ -5,7 +5,6 @@ interface props {
     submit: string;
 }
 const Score: React.FC<props> = ({ submit }) => {
-    console.log(submit);
     const navigate = useNavigate();
     return (
         <div className="score">

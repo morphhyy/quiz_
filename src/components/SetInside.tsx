@@ -60,10 +60,18 @@ const SetInside: React.FC<props> = ({
         const [data] = filterquestion;
         const result = data.answers.indexOf(answer);
         if (result === data.correctIndex) {
-            setSelectAnswer([
-                ...selectAnswer,
-                { id: selected, answer, correct: true },
-            ]);
+            const duplicate = selectAnswer.find((k) => {
+                if (k.id === selected) {
+                    return true;
+                }
+                return false;
+            });
+            if (!duplicate) {
+                setSelectAnswer([
+                    ...selectAnswer,
+                    { id: selected, answer, correct: true },
+                ]);
+            }
         } else {
             setSelectAnswer([
                 ...selectAnswer,
