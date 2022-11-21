@@ -1,41 +1,30 @@
 import React from "react";
-import { AiOutlineLeft } from "react-icons/ai";
-import { IQuestion, ISelectAnswer } from "../models/models";
+import { IDataContext, useDataContext } from "../context/DataContext";
 import { Questions } from "../Question";
+import { AiOutlineLeft } from "react-icons/ai";
 import QuestionNumber from "./QuestionNumber";
 import Score from "./Score";
 import Timer from "./Timer";
 
 interface props {
-    goback: () => void;
-    setnumber: any;
-    selectAnswer: ISelectAnswer[];
     time: string;
     setTime: React.Dispatch<React.SetStateAction<string>>;
-    filterquestion: IQuestion[];
-    setSelectAnswer: React.Dispatch<React.SetStateAction<ISelectAnswer[]>>;
-    setSelected: React.Dispatch<React.SetStateAction<number>>;
-    selected: number;
-    submit: string;
-    buttonText: string;
-    setFilterQuestion: React.Dispatch<React.SetStateAction<IQuestion[]>>;
-    setSubmit: React.Dispatch<React.SetStateAction<string>>;
 }
-const SetInside: React.FC<props> = ({
-    goback,
-    setnumber,
-    selectAnswer,
-    time,
-    setTime,
-    filterquestion,
-    setSelectAnswer,
-    submit,
-    selected,
-    buttonText,
-    setSelected,
-    setFilterQuestion,
-    setSubmit,
-}) => {
+
+const SetInside: React.FC<props> = ({ time, setTime }) => {
+    const {
+        goback,
+        setnumber,
+        selectAnswer,
+        filterquestion,
+        setSelectAnswer,
+        setSelected,
+        selected,
+        buttonText,
+        setFilterQuestion,
+        setSubmit,
+    } = useDataContext() as IDataContext;
+
     const skip = () => {
         setSelectAnswer([...selectAnswer, { id: selected, skip: true }]);
         setSelected((previous) => previous + 1);
@@ -136,7 +125,7 @@ const SetInside: React.FC<props> = ({
                     })}
 
                     {selected === 8 ? (
-                        <Score submit={submit} />
+                        <Score />
                     ) : (
                         <div className="all_button">
                             <button onClick={previous}>PREVIOUS</button>

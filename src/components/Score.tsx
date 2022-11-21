@@ -1,10 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { IDataContext, useDataContext } from "../context/DataContext";
 
-interface props {
-    submit: string;
-}
-const Score: React.FC<props> = ({ submit }) => {
+const Score: React.FC = () => {
+    const { submit } = useDataContext() as IDataContext;
     const navigate = useNavigate();
     return (
         <div className="score">
